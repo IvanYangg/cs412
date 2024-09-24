@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quote of the Day</title>
+</head>
+<body>
+    <header>
+        <h1>Quote of the Day</h1>
+        <nav>
+            <a href="{% url 'quote' %}">Home</a> |
+        </nav>
+    </header>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

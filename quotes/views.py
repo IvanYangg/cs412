@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.templatetags.static import static
 import random
 # Create your views here.
 quotes = [
@@ -8,9 +9,9 @@ quotes = [
 ]
 
 images = [
-    'pics/pic1.jpg',
-    'pics/pic2.webp',
-    'pics/pic3.webp'
+    static('pic1.jpg'), 
+    static('pic2.webp'),
+    static('pic3.webp'),
 ]
 
 def quote(request):
