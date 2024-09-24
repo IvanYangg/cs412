@@ -18,3 +18,9 @@ def quote(request):
     random_quote = random.choice(quotes)
     random_image = random.choice(images)
     return render(request, 'quote.html', {'quote': random_quote, 'image': random_image})
+
+def show_all(request):
+    return render(request, 'show_all.html', {'quotes': quotes, 'images': images})
+
+def about(request):
+    return render(request, 'about.html')
