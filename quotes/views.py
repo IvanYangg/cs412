@@ -11,10 +11,10 @@ quotes = [
 ]
 
 images = [
-    static('pic1.jpg'), 
-    static('pic2.webp'),
-    static('pic3.webp'),
-    static('pic4.jpg'),
+    static('pics/pic1.jpg'), 
+    static('pics/pic2.webp'),
+    static('pics/pic3.webp'),
+    static('pics/pic4.jpg'),
 ]
 
 def quote(request):

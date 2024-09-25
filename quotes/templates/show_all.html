@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}  
 {% block content %}
     <h2>All Quotes by Stephen Curry</h2>
     <ul>
@@ -10,7 +11,8 @@
     <h2>All Images of Stephen Curry</h2>
     <ul>
         {% for image in images %}
-            <p><img src="{{ image }}" alt="Image"></p>
+            <p><img src="{{ image }}" alt="Image"></p>  
         {% endfor %}
     </ul>
 {% endblock %}
+
