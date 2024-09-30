@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Ivan's Shack</title>
+    <link rel="stylesheet" href="{% static 'restaurant/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Ivan's Shack</h1>
+        <nav>
+            <a href="{% url 'main' %}">Home</a>
+            <a href="{% url 'order' %}">Order</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

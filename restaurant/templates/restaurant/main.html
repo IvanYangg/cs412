@@ -1,0 +1,13 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+<div>
+    {% load static %}
+    <h1>Welcome to Ivan's Shack! </h1>
+    <p>We have the best fast food in Boston! Come try today. </p>
+    <img src="{% static 'restaurant/restaurant.jpg' %}" alt="Restaurant Image">
+    <h2>Restaurant Information</h2>
+    <p>Location: 123 Allston Street</p>
+    <p>Hours: 9 AM - 9 PM</p>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+<div>
+    <h2>Place an Order</h2>
+
+    <form method="POST" action="{% url 'confirmation' %}">
+        {% csrf_token %}
+        <h3>Select your Items:</h3>
+        <p><input type="checkbox" name="items" value="Pizza"> Pizza ($3)</p>
+        <p><input type="checkbox" name="items" value="Burger"> Burger ($8)</p>
+        <p><input type="checkbox" name="items" value="Fries"> Fries ($4)</p>
+        <p><input type="checkbox" name="items" value="Salad"> Salad ($7)</p>
+        <h3>Today's Special:</h3>
+        <p><input type="checkbox" name="items" value="Daily Special">{{ daily_special }} ($20)</p>
+        <h3>Special Instructions</h3>
+        <p>Please share any special instructions: <textarea name="instructions"></textarea></p>
+    
+        <h3>Customer Information</h3>
+        <p>Name: <input type="text" name="name" required></p>
+        <p>Phone: <input type="text" name="phone" required></p>
+        <p>Email: <input type="email" name="email" required></p>
+    
+        <h3>Place your order!</h3>
+        <button type="submit">Submit Order</button>
+    </form>
+</div>
+{% endblock %}
