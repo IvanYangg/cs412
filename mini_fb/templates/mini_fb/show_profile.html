@@ -7,12 +7,12 @@ Description: This file defines the html that is rendered upon clicking on a spec
 {% block content %}
 {% load static %}
   <div class="profile-container">
-    <img src="{{ object.profile_image_url }}" alt="{{ object.first_name }}" width="400" class="profile-image">
+    <img src="{{ object.profile_image_url }}" alt="{{ object.first_name }}" class="profile-image">
     <div>
         <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
         <p><strong>City:</strong> {{ profile.city }}</p>
         <p><strong>Email:</strong> {{ profile.email }}</p>
-        <h3><a href="{% url 'create_status' profile.pk %}">Create Status</a></h3>
+        <h3><a class="status-button" href="{% url 'create_status' profile.pk %}">Create Status</a></h3>
     </div>
   </div>
   <h2>{{ profile.first_name }}'s Status Messages:</h2>
