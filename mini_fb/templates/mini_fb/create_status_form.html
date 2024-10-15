@@ -1,0 +1,13 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the form to create new status messages.  -->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+  <h2>Post a status message</h2>
+  <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Create Status</button>
+  </form>
+{% endblock %}

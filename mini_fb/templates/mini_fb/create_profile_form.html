@@ -1,0 +1,15 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the form for creating a new profile.  -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<h2>Create a Profile</h2>
+<p>Fill in the form below to create your new profile!</p>
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Create Profile</button>
+</form>
+{% endblock %}
