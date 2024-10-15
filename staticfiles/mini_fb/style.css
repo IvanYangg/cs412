@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(65, 65, 225);
+    background-color: red;
     margin-left: 2em;
     font-family: Arial, sans-serif;
 }
@@ -34,4 +34,9 @@ td img {
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container {
+    display:flex;
+    justify-content:center;
 }

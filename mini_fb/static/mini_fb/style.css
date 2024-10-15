@@ -1,11 +1,15 @@
 body {
-    background-color: rgb(65, 65, 225);
+    background-color: rgb(96, 96, 238);
+    color:rgb(5, 5, 167);
     margin-left: 2em;
+    margin-right:2em;
     font-family: Arial, sans-serif;
 }
 
-h1 {
+.logo {
     background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 table {
@@ -34,4 +38,23 @@ td img {
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container {
+    display:flex;
+    justify-content: space-between;
+}
+
+.profile-image {
+    border-radius:16px;
+    border-style:groove;
+    border-color: white;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
