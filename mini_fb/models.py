@@ -31,3 +31,12 @@ class StatusMessage(models.Model):
 
     def __str__(self):
         return f"{self.profile.first_name} - {self.message}"
+    
+    def get_images(self):
+        return Image.objects.filter(status_message=self)
+    
+# a custom image model for adding and storing images into the database
+class Image(models.Model):
+    image_file = models.ImageField(blank=True) 
+    status_message = models.ForeignKey('StatusMessage', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)

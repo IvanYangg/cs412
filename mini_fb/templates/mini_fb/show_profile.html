@@ -16,11 +16,19 @@ Description: This file defines the html that is rendered upon clicking on a spec
     </div>
   </div>
   <h2>{{ profile.first_name }}'s Status Messages:</h2>
-    {% for status in profile.get_status_messages %}
-        <p>
-            <strong>{{ status.timestamp }} </strong> {{ status.message }}
-        </p>
-    {% empty %}
-        <p>No status messages yet.</p>
-    {% endfor %}
+  {% for status in profile.get_status_messages %}
+      <div class="status-message">
+          <p>
+              <strong>{{ status.timestamp }} </strong> {{ status.message }}
+          </p>
+
+          {% for img in status.get_images %}
+              <img src="{{ img.image_file.url }}" alt="Status Image" class="status-image">
+          {% empty %}
+              <p>No images for this status.</p>
+          {% endfor %}
+      </div>
+  {% empty %}
+      <p>No status messages yet.</p>
+  {% endfor %}
 {% endblock %}
