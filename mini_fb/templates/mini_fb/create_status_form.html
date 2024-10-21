@@ -7,7 +7,9 @@ Description: This file defines the html that renders the form to create new stat
   <h2>Post a status message for {{profile.first_name}}</h2>
   <form method="post" enctype="multipart/form-data" class="status-form">
     {{ form.as_p }}
+    <label for="files">Images:</label>
     <input type="file" name="files" multiple />
+    <br>
     {% csrf_token %}
     <button type="submit">Create Status</button>
   </form>

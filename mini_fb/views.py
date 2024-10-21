@@ -6,9 +6,9 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Profile, StatusMessage, Image
-from .forms import CreateProfileForm, CreateStatusMessageForm
+from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm
 
 # Create your views here.
 #custom view that shows all profiles 
@@ -62,5 +62,14 @@ class CreateStatusMessageView(CreateView):
         return super().form_valid(form)
     
     # handle redirection of url after submission of new status form
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+    
+class UpdateProfileView(UpdateView):
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = 'mini_fb/update_profile_form.html'
+
+    # handle redirection of url after a successful update
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})

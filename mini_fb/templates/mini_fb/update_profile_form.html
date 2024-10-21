@@ -1,0 +1,14 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that is rendered upon clicking the update profile button.  -->
+
+{% extends "mini_fb/base.html" %}
+{% block content %}
+  <h2>Update {{ profile.first_name }}'s Profile</h2>
+  <p>Fill in the form below to create your new profile
+  <form method="post" enctype="multipart/form-data">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Update</button>
+  </form>
+{% endblock %}
