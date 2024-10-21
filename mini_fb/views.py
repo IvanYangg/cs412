@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from .models import Profile, StatusMessage
+from .models import Profile, StatusMessage, Image
 from .forms import CreateProfileForm, CreateStatusMessageForm
 
 # Create your views here.
@@ -46,10 +46,19 @@ class CreateStatusMessageView(CreateView):
         context['profile'] = profile
         return context
     
-    # validate the profile attribute
+    # validate the profile attribute and handle image uploads
     def form_valid(self, form):
         profile = Profile.objects.get(pk=self.kwargs['pk'])  
         form.instance.profile = profile  
+        # save the status message to database
+        sm = form.save()
+        # read the file from the form
+        files = self.request.FILES.getlist('files')  
+        for file in files:
+            # associate image with status message
+            image = Image(status_message=sm, image_file=file) 
+            # save the image to the database 
+            image.save()  
         return super().form_valid(form)
     
     # handle redirection of url after submission of new status form

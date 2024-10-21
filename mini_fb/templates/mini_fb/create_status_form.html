@@ -5,8 +5,9 @@ Description: This file defines the html that renders the form to create new stat
 {% extends 'mini_fb/base.html' %}
 {% block content %}
   <h2>Post a status message for {{profile.first_name}}</h2>
-  <form method="post" class="status-form">
+  <form method="post" enctype="multipart/form-data" class="status-form">
     {{ form.as_p }}
+    <input type="file" name="files" multiple />
     {% csrf_token %}
     <button type="submit">Create Status</button>
   </form>

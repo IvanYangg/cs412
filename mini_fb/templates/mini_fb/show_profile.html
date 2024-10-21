@@ -24,8 +24,6 @@ Description: This file defines the html that is rendered upon clicking on a spec
 
           {% for img in status.get_images %}
               <img src="{{ img.image_file.url }}" alt="Status Image" class="status-image">
-          {% empty %}
-              <p>No images for this status.</p>
           {% endfor %}
       </div>
   {% empty %}
