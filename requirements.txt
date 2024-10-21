@@ -17,11 +17,11 @@ cachetools==5.0.0
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
-click>=7.0,<8.1
+click==8.1.7
 debugpy==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1
-Django==5.1.1
+Django==5.1.2
 entrypoints==0.4
 exceptiongroup==1.2.0
 executing==0.8.3
@@ -60,7 +60,7 @@ pandocfilters==1.5.0
 parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==9.1.0
+pillow==11.0.0
 prometheus-client==0.14.1
 prompt-toolkit==3.0.29
 protobuf==3.20.0
