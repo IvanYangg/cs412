@@ -1,0 +1,19 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the form to update status messages.  -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+  <h2>Update Status Message</h2>
+
+  <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Update</button>
+  </form>
+
+  <form action="{% url 'show_profile' status_message.profile.pk %}">
+    <button type="submit">Cancel</button>
+  </form>
+{% endblock %}

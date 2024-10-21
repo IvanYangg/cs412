@@ -26,6 +26,10 @@ Description: This file defines the html that is rendered upon clicking on a spec
           {% for img in status.get_images %}
               <img src="{{ img.image_file.url }}" alt="Status Image" class="status-image">
           {% endfor %}
+          <p>
+            <a href="{% url 'update_status' status.pk %}" class = "status-button" >Update</a> |
+            <a href="{% url 'delete_status' status.pk %}" class = "status-button" >Delete</a>
+          </p>
       </div>
   {% empty %}
       <p>No status messages yet.</p>

@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Profile, StatusMessage, Image
 from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm
 
@@ -65,6 +65,7 @@ class CreateStatusMessageView(CreateView):
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
+#custom view to update profile
 class UpdateProfileView(UpdateView):
     model = Profile
     form_class = UpdateProfileForm
@@ -73,3 +74,27 @@ class UpdateProfileView(UpdateView):
     # handle redirection of url after a successful update
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+    
+# custom view for deleting status messages
+class DeleteStatusMessageView(DeleteView):
+    model = StatusMessage
+    template_name = 'mini_fb/delete_status_form.html'
+    context_object_name = 'status_message'
+
+    # handle redirection of url after successful deletion
+    def get_success_url(self):
+        pk = self.object.profile.pk
+        return reverse('show_profile', kwargs={'pk': pk})
+    
+# custom view for updating status messages
+class UpdateStatusMessageView(UpdateView):
+    model = StatusMessage
+    fields = ['message']
+    template_name = 'mini_fb/update_status_form.html'
+    context_object_name = 'status_message'
+
+    # handle redirection of url after updating status message
+    def get_success_url(self):
+        pk = self.object.profile.pk
+        return reverse('show_profile', kwargs={'pk': pk})
+    

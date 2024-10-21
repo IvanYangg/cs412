@@ -1,0 +1,19 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the form to delete status messages.  -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+  <h2>Delete this status message?</h2>
+  <p><strong>{{ status_message.message }}</strong></p>
+  
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+  </form>
+
+  <form action="{% url 'show_profile' status_message.profile.pk %}">
+    <button type="submit">No</button>
+  </form>
+{% endblock %}
