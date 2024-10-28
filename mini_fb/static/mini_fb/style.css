@@ -120,3 +120,8 @@ footer {
 .status-image {
     width:300px;
 }
+
+.friends {
+    display:flex;
+    justify-content: space-between;
+}
