@@ -120,3 +120,34 @@ footer {
 .status-image {
     width:300px;
 }
+
+.friends {
+    display:flex;
+    gap: 1.5em;  
+    align-items: center;
+}
+
+.suggestions {
+    margin-top: 2em;
+}
+
+.friend-name {
+    color: white;
+    text-decoration: none;
+}
+
+.news-feed {
+    display:flex;
+    gap:0.5em;
+}
+
+.news-feed > img {
+    width:60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.news-feed-section {
+    background-color: white;
+    margin-top: 1em;
+}

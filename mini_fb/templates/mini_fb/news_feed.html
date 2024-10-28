@@ -1,0 +1,26 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that is rendered to show the news feed on a specific profile.  -->
+
+{% extends "mini_fb/base.html" %}
+
+{% block content %}
+{% load static %}
+<h2>{{ profile.first_name }}'s News Feed</h2>
+<a class = "status-button" href ="{% url 'show_profile' profile.id %}">Back to Profile</a>
+<div class="news-feed-section">
+    {% for status in news_feed %}
+        <div class="news-feed">
+            <img src="{{ status.profile.profile_image_url }}" alt="{{ status.profile.first_name }}'s profile picture">
+            <p><strong>{{ status.profile.first_name }} {{ status.profile.last_name }}</strong></p>
+            <p>{{ status.timestamp }}</p>
+        </div>
+        <p>{{ status.message }}</p>
+        {% for img in status.get_images %}
+            <img class="status-image" src="{{ img.image_file.url }}" alt="Status Image" >
+        {% endfor %}
+        {% empty %}
+        <p>No recent updates.</p>
+    {% endfor %}
+</div>
+{% endblock %}

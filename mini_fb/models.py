@@ -42,6 +42,10 @@ class Profile(models.Model):
         self_profile2_friends = Friend.objects.filter(profile2=self).values_list('profile1', flat=True)
         friends_ids = set(self_profile1_friends) | set(self_profile2_friends) | {self.id}
         return Profile.objects.exclude(id__in=friends_ids)
+    
+    def get_news_feed(self):
+        all_ids = [friend.id for friend in self.get_friends()] + [self.id]
+        return StatusMessage.objects.filter(profile__id__in=all_ids).order_by('-timestamp')
 
 # a custom profile model that defines status messages that are linked to a profile. Has data attributes, timestamp, message, and profile, which is the foreign key. 
 class StatusMessage(models.Model):

@@ -14,6 +14,7 @@ Description: This file defines the html that is rendered upon clicking on a spec
         <p><strong>Email:</strong> {{ profile.email }}</p>
         <h3><a class="status-button" href="{% url 'create_status' profile.pk %}">Create Status</a></h3>
         <h3><a class="status-button" href="{% url 'update_profile' profile.pk %}">Update Profile</a></h3>
+        <h3><a class="status-button" href="{% url 'news_feed' pk=profile.id %}">News Feed</a></h3>
     </div>
   </div>
   <h2>{{ profile.first_name }}'s Friends</h2>
