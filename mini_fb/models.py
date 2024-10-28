@@ -5,6 +5,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 # a custom profile model that defines the first_name, last_name, city, email, and profile_image_url data attributes of a generic user. 
@@ -29,6 +30,18 @@ class Profile(models.Model):
         friends1 = Friend.objects.filter(profile1=self).values_list('profile2', flat=True)
         friends2 = Friend.objects.filter(profile2=self).values_list('profile1', flat=True)
         return Profile.objects.filter(id__in=list(friends1) + list(friends2))
+    
+    def add_friend(self, other):
+        if self != other:
+            friend_exists = Friend.objects.filter(profile1=self, profile2=other).exists() or Friend.objects.filter(profile1=other, profile2=self).exists()
+            if not friend_exists:
+                Friend.objects.create(profile1=self, profile2=other, timestamp=timezone.now())
+
+    def get_friend_suggestions(self):
+        self_profile1_friends = Friend.objects.filter(profile1=self).values_list('profile2', flat=True)
+        self_profile2_friends = Friend.objects.filter(profile2=self).values_list('profile1', flat=True)
+        friends_ids = set(self_profile1_friends) | set(self_profile2_friends) | {self.id}
+        return Profile.objects.exclude(id__in=friends_ids)
 
 # a custom profile model that defines status messages that are linked to a profile. Has data attributes, timestamp, message, and profile, which is the foreign key. 
 class StatusMessage(models.Model):

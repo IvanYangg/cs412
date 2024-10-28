@@ -4,11 +4,12 @@
 
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Profile, StatusMessage, Image
 from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm
+from django.shortcuts import redirect, get_object_or_404
 
 # Create your views here.
 #custom view that shows all profiles 
@@ -97,4 +98,23 @@ class UpdateStatusMessageView(UpdateView):
     def get_success_url(self):
         pk = self.object.profile.pk
         return reverse('show_profile', kwargs={'pk': pk})
+
+# custom view for adding friends
+class CreateFriendView(View):
+    def dispatch(self, request, *args, **kwargs):
+        profile = get_object_or_404(Profile, pk=kwargs['pk'])
+        other_profile = get_object_or_404(Profile, pk=kwargs['other_pk'])
+        profile.add_friend(other_profile)
+        return redirect('show_profile', pk=profile.pk)
+
+# custom view for showing friend suggestions
+class ShowFriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['friend_suggestions'] = self.object.get_friend_suggestions()
+        return context
     

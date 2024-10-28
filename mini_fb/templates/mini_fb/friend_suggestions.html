@@ -1,0 +1,24 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the page for friend suggestions.  -->
+
+{% extends "mini_fb/base.html" %}
+
+{% block content %}
+{% load static %}
+<div class = "suggestions">
+    <a class = "status-button" href ="{% url 'show_profile' profile.id %}">Back to Profile</a>
+    <h2>Friend suggestions</h2>
+    <div class="friends">
+        {% for suggestion in friend_suggestions %}
+            <a href="{% url 'show_profile' suggestion.id %}">
+                <img src="{{suggestion.profile_image_url}}" alt="{{ suggestion.first_name }}'s profile picture" width="100" height="80">
+                <p class="friend-name">{{ suggestion.first_name }} {{ suggestion.last_name }}</p>
+            </a>
+            <a class = "status-button" href ="{% url 'add_friend' profile.id suggestion.id %}">Add Friend</a>
+        {% empty %}
+        <p>No friend suggestions available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

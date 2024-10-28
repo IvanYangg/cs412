@@ -22,14 +22,14 @@ Description: This file defines the html that is rendered upon clicking on a spec
     <div>
       <a href="{% url 'show_profile' friend.id %}">
           <img src="{{ friend.profile_image_url }}" alt="{{ friend.first_name }}'s profile picture" width="100" height = "80">
-          <p>{{ friend.first_name }} {{ friend.last_name }}</p>
+          <p class = "friend-name">{{ friend.first_name }} {{ friend.last_name }}</p>
       </a>
     </div>
     {% empty %}
         <p>This profile has no friends yet.</p>
     {% endfor %}
   </div>
-
+  <a class = "status-button" href="{% url 'friend_suggestions' profile.id %}">Friend Suggestions</a>
   <h2>{{ profile.first_name }}'s Status Messages:</h2>
   {% for status in profile.get_status_messages %}
       <div class="status-message">
