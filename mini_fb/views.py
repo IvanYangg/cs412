@@ -11,6 +11,8 @@ from .models import Profile, StatusMessage, Image
 from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 # Create your views here.
 #custom view that shows all profiles 
@@ -31,6 +33,26 @@ class CreateProfileView(CreateView):
     form_class = CreateProfileForm
     template_name = 'mini_fb/create_profile_form.html' 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add UserCreationForm to context
+        context['user_form'] = UserCreationForm()
+        return context
+
+    def form_valid(self, form):
+        # reconstruct the UserCreationForm from the POST data
+        user_form = UserCreationForm(self.request.POST)
+        # create the user and login
+        user = user_form.save()
+        form.instance.user = user
+        # Log the user in after account creation
+        login(self.request, user)
+        # send to superclass
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk': self.object.pk})
+    
 #custom view to render form to create new status messages
 class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     model = StatusMessage
