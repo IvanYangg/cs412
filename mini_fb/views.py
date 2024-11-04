@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Profile, StatusMessage, Image
 from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 #custom view that shows all profiles 
@@ -31,7 +32,7 @@ class CreateProfileView(CreateView):
     template_name = 'mini_fb/create_profile_form.html' 
 
 #custom view to render form to create new status messages
-class CreateStatusMessageView(CreateView):
+class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     model = StatusMessage
     form_class = CreateStatusMessageForm
     template_name = 'mini_fb/create_status_form.html'
@@ -67,7 +68,7 @@ class CreateStatusMessageView(CreateView):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
 #custom view to update profile
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = UpdateProfileForm
     template_name = 'mini_fb/update_profile_form.html'
@@ -77,7 +78,7 @@ class UpdateProfileView(UpdateView):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
 # custom view for deleting status messages
-class DeleteStatusMessageView(DeleteView):
+class DeleteStatusMessageView(LoginRequiredMixin, DeleteView):
     model = StatusMessage
     template_name = 'mini_fb/delete_status_form.html'
     context_object_name = 'status_message'
@@ -88,7 +89,7 @@ class DeleteStatusMessageView(DeleteView):
         return reverse('show_profile', kwargs={'pk': pk})
     
 # custom view for updating status messages
-class UpdateStatusMessageView(UpdateView):
+class UpdateStatusMessageView(LoginRequiredMixin, UpdateView):
     model = StatusMessage
     fields = ['message']
     template_name = 'mini_fb/update_status_form.html'
@@ -100,7 +101,7 @@ class UpdateStatusMessageView(UpdateView):
         return reverse('show_profile', kwargs={'pk': pk})
 
 # custom view for adding friends
-class CreateFriendView(View):
+class CreateFriendView(LoginRequiredMixin, View):
     def dispatch(self, request, *args, **kwargs):
         profile = get_object_or_404(Profile, pk=kwargs['pk'])
         other_profile = get_object_or_404(Profile, pk=kwargs['other_pk'])
