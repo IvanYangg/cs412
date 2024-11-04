@@ -34,7 +34,9 @@ Description: This file defines the html that is rendered upon clicking on a spec
         <p>This profile has no friends yet.</p>
     {% endfor %}
   </div>
-  <a class = "status-button" href="{% url 'friend_suggestions' profile.id %}">Friend Suggestions</a>
+  {% if user.is_authenticated and user == profile.user %}
+    <a class = "status-button" href="{% url 'friend_suggestions' profile.id %}">Friend Suggestions</a>
+  {% endif %}
   <h2>{{ profile.first_name }}'s Status Messages:</h2>
   {% for status in profile.get_status_messages %}
       <div class="status-message">
