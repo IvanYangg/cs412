@@ -1,0 +1,14 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the login page and the form associated with it.  -->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+<h2>Login</h2>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{% url 'show_all_profiles' %}">
+    <button type="submit">Log in</button>
+</form>
+{% endblock %}

@@ -13,9 +13,9 @@ Description: This file defines the html that is rendered upon clicking on a spec
         <p><strong>City:</strong> {{ profile.city }}</p>
         <p><strong>Email:</strong> {{ profile.email }}</p>
         {% if user.is_authenticated and user == profile.user %}
-          <h3><a class="status-button" href="{% url 'create_status' profile.pk %}">Create Status</a></h3>
-          <h3><a class="status-button" href="{% url 'update_profile' profile.pk %}">Update Profile</a></h3>
-          <h3><a class="status-button" href="{% url 'news_feed' pk=profile.id %}">News Feed</a></h3>
+          <h3><a class="status-button" href="{% url 'create_status' %}">Create Status</a></h3>
+          <h3><a class="status-button" href="{% url 'update_profile' %}">Update Profile</a></h3>
+          <h3><a class="status-button" href="{% url 'news_feed' %}">News Feed</a></h3>
         {% else %}
           <p>Not your page. Cannot make updates. </p>
         {% endif %}
@@ -35,7 +35,7 @@ Description: This file defines the html that is rendered upon clicking on a spec
     {% endfor %}
   </div>
   {% if user.is_authenticated and user == profile.user %}
-    <a class = "status-button" href="{% url 'friend_suggestions' profile.id %}">Friend Suggestions</a>
+    <a class = "status-button" href="{% url 'friend_suggestions' %}">Friend Suggestions</a>
   {% endif %}
   <h2>{{ profile.first_name }}'s Status Messages:</h2>
   {% for status in profile.get_status_messages %}
@@ -47,10 +47,12 @@ Description: This file defines the html that is rendered upon clicking on a spec
           {% for img in status.get_images %}
               <img src="{{ img.image_file.url }}" alt="Status Image" class="status-image">
           {% endfor %}
+          {% if user.is_authenticated and user == profile.user %}
           <p>
             <a href="{% url 'update_status' status.pk %}" class = "status-button" >Update</a> |
             <a href="{% url 'delete_status' status.pk %}" class = "status-button" >Delete</a>
           </p>
+          {% endif %}
       </div>
   {% empty %}
       <p>No status messages yet.</p>

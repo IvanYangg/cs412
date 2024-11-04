@@ -151,3 +151,12 @@ footer {
     background-color: white;
     margin-top: 1em;
 }
+
+.log-out {
+    margin-top: 1em;
+    margin-left: auto;
+}
+
+.login {
+    margin-left: auto;
+}

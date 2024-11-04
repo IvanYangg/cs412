@@ -1,0 +1,9 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the log out page with confirmation.  -->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+<h2>You have been logged out.</h2>
+<a class = "status-button" href="{% url 'login' %}">Login Page</a>
+{% endblock %}

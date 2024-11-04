@@ -18,11 +18,18 @@ Description: This file defines the base html that is rendered on every page.  --
             <h3><a href ="{% url 'create_profile' %}">Create Profile</a></h3>
             <h3><a href="{% url 'show_all_profiles' %}">All Profiles</a></h3>
             {% if user.is_authenticated %}
+            <form class = "log-out" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
             <p>Logged in user: {{ user.username }}</p>
-            {% else %}
-            <p>Not logged in. </p>
-            {% endif %}
         </nav>
+        {% else %}
+        <div class = "login">
+            <a class = "status-button" href="{% url 'login' %}">Login</a>
+            <p>Not logged in. </p>
+        </div>
+        {% endif %}
     </header>
     <main>
         {% block content %}

@@ -138,3 +138,6 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ALLOWED_HOSTS = ['*']
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'show_profile'
