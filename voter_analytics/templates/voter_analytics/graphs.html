@@ -1,0 +1,85 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the graphs and reuses filter form.  -->
+
+{% extends 'voter_analytics/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Voter Records</h1>
+    <form method="get" action="{% url 'graphs' %}">
+        <div class="row">
+            <label for="party_affiliation">Select Party Affiliation:</label>
+            <select name="party_affiliation" id="party_affiliation">
+                <option value="">Choose</option>
+                <option value="U">U</option>
+                <option value="D">D</option>
+                <option value="R">R</option>
+                <option value="CC">CC</option>
+                <option value="L">L</option>
+                <option value="T">T</option>
+                <option value="O">O</option>
+                <option value="G">G</option>
+                <option value="J">J</option>
+                <option value="Q">Q</option>
+                <option value="FF">FF</option>
+                <option value="A">A</option>
+                <option value="X">X</option>
+                <option value="S">S</option>
+                <option value="HH">HH</option>
+                <option value="AA">AA</option>
+                <option value="GG">GG</option>
+                <option value="Z">Z</option>
+                <option value="P">P</option>
+                <option value="E">E</option>
+                <option value="V">V</option>
+                <option value="H">H</option>
+                <option value="Y">Y</option>
+                <option value="W">W</option>
+                <option value="EE">EE</option>
+                <option value="K">K</option>
+            </select>
+    
+            <label for="min_dob">Min Year of Birth:</label>
+            <select name="min_dob" id="min_dob">
+                <option value="">Choose</option>
+                {% for year in birth_years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="max_dob">Max Year of Birth:</label>
+            <select name="max_dob" id="max_dob">
+                <option value="">Choose</option>
+                {% for year in birth_years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+    
+            {% for election in elections %}
+                <label>
+                    <input type="checkbox" name="{{ election }}">{{ election }}
+                </label>
+            {% endfor %}
+    
+            <button type="submit">Filter</button>
+            <button type="reset">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        <p>
+            {{graph_birthyear_hist|safe}}
+        </p>
+        <p>
+            {{graph_party_pie|safe}}
+        </p>
+        <p>
+            {{graph_elections_hist|safe}}
+        </p>
+    </div>
+</div>
+{% endblock %}

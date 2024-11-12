@@ -46,7 +46,7 @@ form label {
     color: #301b75;
 }
 
-form select, form input[type="checkbox"], form button {
+form select, form button {
     margin-top: 5px;
     padding: 5px;
     font-size: 1em;
@@ -120,4 +120,10 @@ table a:hover {
 .voter-details {
     text-align:center;
     align-items: center;
+}
+
+.navigation {
+    display: flex;
+    gap:15px;
+    justify-content: center;
 }

@@ -10,7 +10,10 @@ Description: This file defines the base html that is rendered on every page.  --
         <link rel="stylesheet" href="{% static 'voter_analytics/styles.css' %}">
     </head>
     <body>
-
+        <nav class = "navigation">
+            <p><a href="{% url 'voters' %}">Show Voter List</a></p>
+            <p><a href="{% url 'graphs' %}">Show Graphs</a></p>
+        </nav>
     {% block content %}
     {% endblock %}    
   
