@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('quotes.urls')),
     path('restaurant/', include('restaurant.urls')),
     path('mini_fb/', include('mini_fb.urls')),
+    path('voter_analytics/', include('voter_analytics.urls')),
 ]
 # include media directory
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

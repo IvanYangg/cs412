@@ -127,6 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mini_fb/static'),
+    os.path.join(BASE_DIR, 'voter_analytics/static'),
 ]
 
 # place for storing images/media

@@ -1,0 +1,18 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the base html that is rendered on every page.  -->
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Voter Analytics</title>
+        <link rel="stylesheet" href="{% static 'voter_analytics/styles.css' %}">
+    </head>
+    <body>
+
+    {% block content %}
+    {% endblock %}    
+  
+    </body>
+</html>

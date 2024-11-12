@@ -1,0 +1,118 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the html that renders the voter list view.  -->
+
+{% extends 'voter_analytics/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Voter Records</h1>
+    <form method="get" action="{% url 'voters' %}">
+        <div class="row">
+            <label for="party_affiliation">Select Party Affiliation:</label>
+            <select name="party_affiliation" id="party_affiliation">
+                <option value="">Choose</option>
+                <option value="U">U</option>
+                <option value="D">D</option>
+                <option value="R">R</option>
+                <option value="CC">CC</option>
+                <option value="L">L</option>
+                <option value="T">T</option>
+                <option value="O">O</option>
+                <option value="G">G</option>
+                <option value="J">J</option>
+                <option value="Q">Q</option>
+                <option value="FF">FF</option>
+                <option value="A">A</option>
+                <option value="X">X</option>
+                <option value="S">S</option>
+                <option value="HH">HH</option>
+                <option value="AA">AA</option>
+                <option value="GG">GG</option>
+                <option value="Z">Z</option>
+                <option value="P">P</option>
+                <option value="E">E</option>
+                <option value="V">V</option>
+                <option value="H">H</option>
+                <option value="Y">Y</option>
+                <option value="W">W</option>
+                <option value="EE">EE</option>
+                <option value="K">K</option>
+            </select>
+
+            <label for="min_dob">Min Year of Birth:</label>
+            <select name="min_dob" id="min_dob">
+                <option value="">Choose</option>
+                {% for year in birth_years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="max_dob">Max Year of Birth:</label>
+            <select name="max_dob" id="max_dob">
+                <option value="">Choose</option>
+                {% for year in birth_years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+
+            {% for election in elections %}
+                <label>
+                    <input type="checkbox" name="{{ election }}">{{ election }}
+                </label>
+            {% endfor %}
+
+            <button type="submit">Filter</button>
+            <button type="reset">Cancel</button>
+        </div>
+    </form>
+
+    <div class="row">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Street Address</th>
+                <th>Date of Birth</th>
+                <th>Party Affiliation</th>
+                <th>Voter Score</th>
+                <th>Details</th>
+            </tr>
+
+            {% for voter in voters %}
+            <tr>
+                <td>{{ voter.first_name }}</td>
+                <td>{{ voter.last_name }}</td>
+                <td>{{ voter.street_number }} {{ voter.street_name }}</td>
+                <td>{{ voter.date_of_birth }}</td>
+                <td>{{ voter.party_affiliation }}</td>
+                <td>{{ voter.voter_score }}</td>
+                <td><a href="{% url 'voter' voter.pk %}">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="row">
+        {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+             
+                </li>
+            {% endif %}
+                <li class="">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>    
+{% endblock %}
