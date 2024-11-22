@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    {% for matchup in matchups %}
+        <a href="{% url 'matchup_detail' matchup.id %}">
+            <img src="{{ matchup.team1_image_url }}" alt="{{ matchup.team1 }}" width="50">
+            {{ matchup.team1 }} vs {{ matchup.team2 }}
+            <img src="{{ matchup.team2_image_url }}" alt="{{ matchup.team2 }}" width="50">
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
