@@ -1,1 +1,12 @@
 {% extends "project/base.html" %}
+{% block content %}
+
+<div>
+    {% for player in players %}
+    <p>
+        <a href="{% url 'player_detail' player.id %}">{{ player.name }}</a> - {{ player.team.name }}
+    </p>
+    {% endfor %}
+</div>
+
+{% endblock %}

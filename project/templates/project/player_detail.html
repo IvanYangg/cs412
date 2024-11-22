@@ -1,0 +1,43 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<h1>{{ player.name }} - Recent Games</h1>
+<h3>{{ player.team.name }} / {{ player.position }}</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Minutes</th>
+            <th>Points</th>
+            <th>Assists</th>
+            <th>Rebounds</th>
+            <th>3pt</th>
+            <th>Steals</th>
+            <th>Blocks</th>
+            <th>Turnovers</th>
+            <th>Fouls</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in game_logs %}
+        <tr>
+            <td>{{ game.date }}</td>
+            <td>{{ game.minutes }}</td>
+            <td>{{ game.points }}</td>
+            <td>{{ game.assists }}</td>
+            <td>{{ game.rebounds }}</td>
+            <td>{{ game.three_pointers_made }} - {{ game.three_pointers_attempted }}</td>
+            <td>{{ game.steals }}</td>
+            <td>{{ game.blocks }}</td>
+            <td>{{ game.turnovers }}</td>
+            <td>{{ game.fouls }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="11">No recent games found for this player.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "project/base.html" %}
+{% block content %}
+<h1>{{ matchup.team1.name }} vs {{ matchup.team2.name }}</h1>
+<div>
+    <h2>{{ matchup.team1.abbreviation }} Stats</h2>
+    <ul>
+        <li>PPG: {{ matchup.team1.avg_ppg }} | Concedes {{ matchup.team1.avg_ppg_conceded }}</li>
+        <li>3PA: {{ matchup.team1.avg_three_point_attempted }}</li>
+        <li>3P%: {{ matchup.team1.avg_three_point_percentage }}</li>
+        <li>FTA: {{ matchup.team1.avg_free_throw_attempted }}</li>
+        <li>Rebounds: {{ matchup.team1.avg_rebounds_per_game }}</li>
+        <li>Assists: {{ matchup.team1.avg_assists_per_game }}</li>
+        <li>Blocks: {{ matchup.team1.avg_blocks_per_game }}</li>
+        <li>Steals: {{ matchup.team1.avg_steals_per_game }}</li>
+        <li>Turnovers: {{ matchup.team1.avg_turnovers_per_game }}</li>
+        <li>Fouls: {{ matchup.team1.avg_fouls_per_game }} </li>
+
+    </ul>
+</div>
+<div>
+    <h2>{{ matchup.team2.abbreviation }} Stats</h2>
+    <ul>
+        <li>PPG: {{ matchup.team2.avg_ppg }} | Concedes {{ matchup.team2.avg_ppg_conceded }}</li>
+        <li>3PA: {{ matchup.team2.avg_three_point_attempted }}</li>
+        <li>3P%: {{ matchup.team2.avg_three_point_percentage }}</li>
+        <li>FTA: {{ matchup.team2.avg_free_throw_attempted }}</li>
+        <li>Rebounds: {{ matchup.team2.avg_rebounds_per_game }}</li>
+        <li>Assists: {{ matchup.team2.avg_assists_per_game }}</li>
+        <li>Blocks: {{ matchup.team2.avg_blocks_per_game }}</li>
+        <li>Steals: {{ matchup.team2.avg_steals_per_game }}</li>
+        <li>Turnovers: {{ matchup.team2.avg_turnovers_per_game }}</li>
+        <li>Fouls: {{ matchup.team2.avg_fouls_per_game }} </li>
+    </ul>
+</div>
+{% endblock %}

@@ -59,7 +59,7 @@ class PlayerGameLog(models.Model):
 
 # Stores daily matchup data 
 class Matchup(models.Model):
-    team1 = models.CharField(max_length=50)
+    team1 = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='matchups_as_team1')
     team1_image_url = models.CharField(max_length=200)
-    team2 = models.CharField(max_length=50)
+    team2 = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='matchups_as_team2')
     team2_image_url = models.CharField(max_length=200)
