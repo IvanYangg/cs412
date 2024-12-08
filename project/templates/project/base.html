@@ -11,10 +11,25 @@
 <body>
     <header class="navbar">
         <nav>
-            <a href="{% url 'matchups' %}">Matchups</a>
-            <a href="{% url 'players' %}">Players</a>
+            <div class="nav-left"></div>
+            <div class="links">
+                <a href="{% url 'matchups' %}">Matchups</a>
+                <a href="{% url 'players' %}">Players</a>
+            </div>
+            <div class="authentication">
+                {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.username }}!</p>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="login-btn">Login</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
+    
     <main>
         {% block content %}
         {% endblock %}

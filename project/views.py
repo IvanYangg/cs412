@@ -65,3 +65,5 @@ class PlayerDetailView(DetailView):
         context['game_logs'] = PlayerGameLog.objects.filter(player=self.object).order_by('-date')
         context['player_averages'] = Player.objects.get(id=self.object.id)
         return context
+    
+# Watchlist view for a user, showing all players that the user is watching, restricted to logged in users

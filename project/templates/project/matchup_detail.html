@@ -1,35 +1,72 @@
 {% extends "project/base.html" %}
 {% block content %}
-<h1>{{ matchup.team1.name }} vs {{ matchup.team2.name }}</h1>
-<div>
-    <h2>{{ matchup.team1.abbreviation }} Stats</h2>
-    <ul>
-        <li>PPG: {{ matchup.team1.avg_ppg }} | Concedes {{ matchup.team1.avg_ppg_conceded }}</li>
-        <li>3PA: {{ matchup.team1.avg_three_point_attempted }}</li>
-        <li>3P%: {{ matchup.team1.avg_three_point_percentage }}</li>
-        <li>FTA: {{ matchup.team1.avg_free_throw_attempted }}</li>
-        <li>Rebounds: {{ matchup.team1.avg_rebounds_per_game }}</li>
-        <li>Assists: {{ matchup.team1.avg_assists_per_game }}</li>
-        <li>Blocks: {{ matchup.team1.avg_blocks_per_game }}</li>
-        <li>Steals: {{ matchup.team1.avg_steals_per_game }}</li>
-        <li>Turnovers: {{ matchup.team1.avg_turnovers_per_game }}</li>
-        <li>Fouls: {{ matchup.team1.avg_fouls_per_game }} </li>
-
-    </ul>
-</div>
-<div>
-    <h2>{{ matchup.team2.abbreviation }} Stats</h2>
-    <ul>
-        <li>PPG: {{ matchup.team2.avg_ppg }} | Concedes {{ matchup.team2.avg_ppg_conceded }}</li>
-        <li>3PA: {{ matchup.team2.avg_three_point_attempted }}</li>
-        <li>3P%: {{ matchup.team2.avg_three_point_percentage }}</li>
-        <li>FTA: {{ matchup.team2.avg_free_throw_attempted }}</li>
-        <li>Rebounds: {{ matchup.team2.avg_rebounds_per_game }}</li>
-        <li>Assists: {{ matchup.team2.avg_assists_per_game }}</li>
-        <li>Blocks: {{ matchup.team2.avg_blocks_per_game }}</li>
-        <li>Steals: {{ matchup.team2.avg_steals_per_game }}</li>
-        <li>Turnovers: {{ matchup.team2.avg_turnovers_per_game }}</li>
-        <li>Fouls: {{ matchup.team2.avg_fouls_per_game }} </li>
-    </ul>
+<h1 class="matchup-header">{{ matchup.team1.name }} vs {{ matchup.team2.name }}</h1>
+<div class="stats-table-container">
+    <table class="stats-table">
+        <thead>
+            <tr>
+                <th>Statistic</th>
+                <th>{{ matchup.team1.abbreviation }}</th>
+                <th>{{ matchup.team2.abbreviation }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PPG</td>
+                <td>{{ matchup.team1.avg_ppg }}</td>
+                <td>{{ matchup.team2.avg_ppg }}</td>
+            </tr>
+            <tr>
+                <td>Concedes PPG</td>
+                <td>{{ matchup.team1.avg_ppg_conceded }}</td>
+                <td>{{ matchup.team2.avg_ppg_conceded }}</td>
+            </tr>
+            <tr>
+                <td>3PA</td>
+                <td>{{ matchup.team1.avg_three_point_attempted }}</td>
+                <td>{{ matchup.team2.avg_three_point_attempted }}</td>
+            </tr>
+            <tr>
+                <td>3P%</td>
+                <td>{{ matchup.team1.avg_three_point_percentage }}</td>
+                <td>{{ matchup.team2.avg_three_point_percentage }}</td>
+            </tr>
+            <tr>
+                <td>FTA</td>
+                <td>{{ matchup.team1.avg_free_throw_attempted }}</td>
+                <td>{{ matchup.team2.avg_free_throw_attempted }}</td>
+            </tr>
+            <tr>
+                <td>Rebounds</td>
+                <td>{{ matchup.team1.avg_rebounds_per_game }}</td>
+                <td>{{ matchup.team2.avg_rebounds_per_game }}</td>
+            </tr>
+            <tr>
+                <td>Assists</td>
+                <td>{{ matchup.team1.avg_assists_per_game }}</td>
+                <td>{{ matchup.team2.avg_assists_per_game }}</td>
+            </tr>
+            <tr>
+                <td>Blocks</td>
+                <td>{{ matchup.team1.avg_blocks_per_game }}</td>
+                <td>{{ matchup.team2.avg_blocks_per_game }}</td>
+            </tr>
+            <tr>
+                <td>Steals</td>
+                <td>{{ matchup.team1.avg_steals_per_game }}</td>
+                <td>{{ matchup.team2.avg_steals_per_game }}</td>
+            </tr>
+            <tr>
+                <td>Turnovers</td>
+                <td>{{ matchup.team1.avg_turnovers_per_game }}</td>
+                <td>{{ matchup.team2.avg_turnovers_per_game }}</td>
+            </tr>
+            <tr>
+                <td>Fouls</td>
+                <td>{{ matchup.team1.avg_fouls_per_game }}</td>
+                <td>{{ matchup.team2.avg_fouls_per_game }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'project/base.html' %}
+{% block content %}
+
+<div class="logged-out-page">
+    <h2>You have been logged out.</h2>
+    <a class = "login-btn" href="{% url 'login' %}">Back to Login Page</a>
+</div>
+
+{% endblock %}

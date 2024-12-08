@@ -1,11 +1,11 @@
 {% extends "project/base.html" %}
 {% block content %}
 
-<div>
+<div class="matchups-container">
     {% for matchup in matchups %}
-        <a href="{% url 'matchup_detail' matchup.id %}">
+        <a class="matchup-card" href="{% url 'matchup_detail' matchup.id %}">
             <img src="{{ matchup.team1_image_url }}" alt="{{ matchup.team1.name }}" width="50">
-            {{ matchup.team1.name }} vs {{ matchup.team2.name }}
+            <h3>{{ matchup.team1.name }} vs {{ matchup.team2.name }}</h3>
             <img src="{{ matchup.team2_image_url }}" alt="{{ matchup.team2.name }}" width="50">
         </a>
     {% endfor %}
