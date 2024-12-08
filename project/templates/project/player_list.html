@@ -1,52 +1,63 @@
 {% extends "project/base.html" %}
 {% block content %}
 
-<h1>Player List</h1>
-<!-- Search and Filter Form -->
-<form method="get">
-    <label for="query">Search by Name:</label>
-    <input type="text" name="query" id="query" value="{{ request.GET.query }}" placeholder="Enter player name">
+<div class="player-list-view">
+    <!-- Search and Filter Form -->
+    <form method="get" class="filter-form">
+        <div class="form-group">
+            <label for="query">Search by Name:</label>
+            <input type="text" name="query" id="query" value="{{ request.GET.query }}" placeholder="Enter player name" class="form-input">
+        </div>
+        
+        <div class="form-group">
+            <label for="team">Filter by Team:</label>
+            <select name="team" id="team" class="form-select">
+                <option value="">All Teams</option>
+                {% for team in teams %}
+                <option value="{{ team.name }}" {% if request.GET.team == team.name %}selected{% endif %}>
+                    {{ team.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Sort by (Highest Season Averages):</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sort_by" value="points_per_game" 
+                    {% if 'points_per_game' in request.GET.sort_by %}checked{% endif %}> Points</label>
+                <label><input type="checkbox" name="sort_by" value="assists_per_game" 
+                    {% if 'assists_per_game' in request.GET.sort_by %}checked{% endif %}> Assists</label>
+                <label><input type="checkbox" name="sort_by" value="rebounds_per_game" 
+                    {% if 'rebounds_per_game' in request.GET.sort_by %}checked{% endif %}> Rebounds</label>
+                <label><input type="checkbox" name="sort_by" value="three_pointers_per_game" 
+                    {% if 'three_pointers_per_game' in request.GET.sort_by %}checked{% endif %}> 3-Pointers</label>
+                <label><input type="checkbox" name="sort_by" value="steals_per_game" 
+                    {% if 'steals_per_game' in request.GET.sort_by %}checked{% endif %}> Steals</label>
+                <label><input type="checkbox" name="sort_by" value="blocks_per_game" 
+                    {% if 'blocks_per_game' in request.GET.sort_by %}checked{% endif %}> Blocks</label>
+                <label><input type="checkbox" name="sort_by" value="turnovers_per_game" 
+                    {% if 'turnovers_per_game' in request.GET.sort_by %}checked{% endif %}> Turnovers</label>
+                <label><input type="checkbox" name="sort_by" value="fouls_per_game" 
+                    {% if 'fouls_per_game' in request.GET.sort_by %}checked{% endif %}> Fouls</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Apply Filters</button>
+        </div>
+    </form>
 
-    <label for="team">Filter by Team:</label>
-    <select name="team" id="team">
-        <option value="">All Teams</option>
-        {% for team in teams %}
-        <option value="{{ team.name }}" {% if request.GET.team == team.name %}selected{% endif %}>
-            {{ team.name }}
-        </option>
+    
+    <div class="player-card-container">
+        {% for player in players %}
+        <a class="player-card" href="{% url 'player_detail' player.id %}">
+            <p class="player-name">{{ player.name }}</p>
+            <p class="player-team">{{ player.team.name }}</p>
+        </a>
         {% endfor %}
-    </select>
-
-    <!-- Sorting Options -->
-    <label>Sort by:</label>
-    <div>
-        <label><input type="checkbox" name="sort_by" value="points_per_game" 
-            {% if 'points_per_game' in request.GET.sort_by %}checked{% endif %}> Points Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="assists_per_game" 
-            {% if 'assists_per_game' in request.GET.sort_by %}checked{% endif %}> Assists Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="rebounds_per_game" 
-            {% if 'rebounds_per_game' in request.GET.sort_by %}checked{% endif %}> Rebounds Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="three_pointers_made_per_game" 
-            {% if 'three_pointers_made_per_game' in request.GET.sort_by %}checked{% endif %}> 3-Pointers Made</label>
-        <label><input type="checkbox" name="sort_by" value="steals_per_game" 
-            {% if 'steals_per_game' in request.GET.sort_by %}checked{% endif %}> Steals Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="blocks_per_game" 
-            {% if 'blocks_per_game' in request.GET.sort_by %}checked{% endif %}> Blocks Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="turnovers_per_game" 
-            {% if 'turnovers_per_game' in request.GET.sort_by %}checked{% endif %}> Turnovers Per Game</label>
-        <label><input type="checkbox" name="sort_by" value="fouls_per_game" 
-            {% if 'fouls_per_game' in request.GET.sort_by %}checked{% endif %}> Fouls Per Game</label>
     </div>
 
-    <button type="submit">Apply Filters</button>
-</form>
-
-<div>
-    {% for player in players %}
-    <p>
-        <a href="{% url 'player_detail' player.id %}">{{ player.name }}</a> - {{ player.team.name }}
-    </p>
-    {% endfor %}
 </div>
 
 {% endblock %}

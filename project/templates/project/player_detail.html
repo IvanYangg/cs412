@@ -1,9 +1,37 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-<h1>{{ player.name }} - Recent Games</h1>
-<h3>{{ player.team.name }} / {{ player.position }}</h3>
-
+<h1 class="player-detail-header">{{ player.name }} - ({{ player.team.name }} / {{ player.position }})</h1>
+<h2 class="player-detail-header">Season Averages:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Minutes</th>
+            <th>Points</th>
+            <th>Assists</th>
+            <th>Rebounds</th>
+            <th>3PT</th>
+            <th>Steals</th>
+            <th>Blocks</th>
+            <th>Turnovers</th>
+            <th>Fouls</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ player_averages.minutes_per_game }}</td>
+            <td>{{ player_averages.points_per_game }}</td>
+            <td>{{ player_averages.assists_per_game }}</td>
+            <td>{{ player_averages.rebounds_per_game }}</td>
+            <td>{{ player_averages.three_pointers_per_game }}</td>
+            <td>{{ player_averages.steals_per_game }}</td>
+            <td>{{ player_averages.blocks_per_game }}</td>
+            <td>{{ player_averages.turnovers_per_game }}</td>
+            <td>{{ player_averages.fouls_per_game }}</td>
+        </tr>
+    </tbody>
+</table>
+<h2 class="player-detail-header">Recent Games:</h2>
 <table>
     <thead>
         <tr>
@@ -12,7 +40,7 @@
             <th>Points</th>
             <th>Assists</th>
             <th>Rebounds</th>
-            <th>3pt</th>
+            <th>3PT</th>
             <th>Steals</th>
             <th>Blocks</th>
             <th>Turnovers</th>
@@ -27,7 +55,7 @@
             <td>{{ game.points }}</td>
             <td>{{ game.assists }}</td>
             <td>{{ game.rebounds }}</td>
-            <td>{{ game.three_pointers_made }} - {{ game.three_pointers_attempted }}</td>
+            <td>{{ game.three_pointers }}</td>
             <td>{{ game.steals }}</td>
             <td>{{ game.blocks }}</td>
             <td>{{ game.turnovers }}</td>
