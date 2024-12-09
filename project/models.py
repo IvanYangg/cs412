@@ -64,3 +64,13 @@ class Matchup(models.Model):
     team1_image_url = models.CharField(max_length=200)
     team2 = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='matchups_as_team2')
     team2_image_url = models.CharField(max_length=200)
+    
+# Stores post data for users to interact with one another in social tab
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    message = models.TextField()
+    image = models.ImageField(upload_to='social_images/', blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.timestamp.strftime("%Y-%m-%d %H:%M:%S")}'
