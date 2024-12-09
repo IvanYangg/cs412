@@ -1,0 +1,14 @@
+{% extends 'project/base.html' %}
+{% block content %}
+
+<div class="remove-from-watchlist-container">
+    <h2>Remove from Watchlist</h2>
+    <p>Are you sure you want to remove <strong>{{ player.name }}</strong> from your watchlist?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="submit-btn">Yes</button>
+        <a href="{% url 'player_detail' pk=player.pk %}" class="cancel-btn">Cancel</a>
+    </form>
+</div>
+{% endblock %}

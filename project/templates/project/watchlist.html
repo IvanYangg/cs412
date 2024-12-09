@@ -1,0 +1,20 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+<div class="watchlist-container">
+    <h2>Your Watchlist: ({{ watchlist.count }})</h2>
+    {% if watchlist %}
+        <div class="player-card-container">
+            {% for item in watchlist %}
+            <a class="player-card" href="{% url 'player_detail' pk=item.player.pk %}">
+                <p class="player-name">{{ item.player.name }}</p>
+                <p class="player-team">{{ item.player.team.name }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have no players in your watchlist. Add some!</p>
+    {% endif %}
+</div>
+{% endblock %}
+

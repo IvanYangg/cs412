@@ -1,7 +1,14 @@
 {% extends "project/base.html" %}
-
 {% block content %}
-<h1 class="player-detail-header">{{ player.name }} - ({{ player.team.name }} / {{ player.position }})</h1>
+
+<div class="player-detail-header">
+    <h1>{{ player.name }} - ({{ player.team.name }} / {{ player.position }})</h1>
+    {% if in_watchlist %}
+    <a href="{% url 'remove_from_watchlist' pk=player.pk %}" class="remove-watchlist-btn">Remove from Watchlist</a>
+    {% else %}
+    <a href="{% url 'add_to_watchlist' pk=player.pk %}" class="add-watchlist-btn">Add to Watchlist</a>
+    {% endif %}
+</div>
 <h2 class="player-detail-header">Season Averages:</h2>
 <table>
     <thead>
