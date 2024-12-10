@@ -71,8 +71,9 @@ class PlayerDetailView(DetailView):
         context['game_logs'] = PlayerGameLog.objects.filter(player=self.object).order_by('-date')
         context['player_averages'] = Player.objects.get(id=self.object.id)
         player = context['player']
-        user_profile = self.request.user.userprofile
-        context['in_watchlist'] = UserWatchList.objects.filter(user=user_profile, player=player).exists()
+        if self.request.user.is_authenticated:
+            user_profile = self.request.user.userprofile
+            context['in_watchlist'] = UserWatchList.objects.filter(user=user_profile, player=player).exists()
         return context
 
 # Registration view for new users
