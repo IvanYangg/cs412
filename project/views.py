@@ -39,20 +39,19 @@ class PlayerListView(ListView):
         queryset = Player.objects.all()
         query = self.request.GET.get('query', '').strip()
         team = self.request.GET.get('team', '')
-        sort_by = self.request.GET.getlist('sort_by', [])
+        sort_by = self.request.GET.get('sort_by', '')
 
-        # Filter by name
+        # name filter
         if query:
-            queryset = queryset.filter(name__icontains=query)
+            queryset = queryset.filter(name__istartswith=query)
 
-        # Filter by team
+        # team filter
         if team:
             queryset = queryset.filter(team__name=team)
 
-        # Apply sorting based on the selected game stats
+        # Sort based on selected game stat
         if sort_by:
-            for field in sort_by:
-                queryset = queryset.order_by(f'-{field}')
+            queryset = queryset.order_by(f'-{sort_by}')
 
         return queryset
 
@@ -60,7 +59,6 @@ class PlayerListView(ListView):
         context = super().get_context_data(**kwargs)
         context['teams'] = Team.objects.all()
         return context
-
 
 # Detail view for a specific player, showing all game logs for that player
 class PlayerDetailView(DetailView):

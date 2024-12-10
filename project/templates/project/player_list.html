@@ -23,23 +23,39 @@
         
         <div class="form-group">
             <label>Sort by (Highest Season Averages):</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="sort_by" value="points_per_game" 
-                    {% if 'points_per_game' in request.GET.sort_by %}checked{% endif %}> Points</label>
-                <label><input type="checkbox" name="sort_by" value="assists_per_game" 
-                    {% if 'assists_per_game' in request.GET.sort_by %}checked{% endif %}> Assists</label>
-                <label><input type="checkbox" name="sort_by" value="rebounds_per_game" 
-                    {% if 'rebounds_per_game' in request.GET.sort_by %}checked{% endif %}> Rebounds</label>
-                <label><input type="checkbox" name="sort_by" value="three_pointers_per_game" 
-                    {% if 'three_pointers_per_game' in request.GET.sort_by %}checked{% endif %}> 3-Pointers</label>
-                <label><input type="checkbox" name="sort_by" value="steals_per_game" 
-                    {% if 'steals_per_game' in request.GET.sort_by %}checked{% endif %}> Steals</label>
-                <label><input type="checkbox" name="sort_by" value="blocks_per_game" 
-                    {% if 'blocks_per_game' in request.GET.sort_by %}checked{% endif %}> Blocks</label>
-                <label><input type="checkbox" name="sort_by" value="turnovers_per_game" 
-                    {% if 'turnovers_per_game' in request.GET.sort_by %}checked{% endif %}> Turnovers</label>
-                <label><input type="checkbox" name="sort_by" value="fouls_per_game" 
-                    {% if 'fouls_per_game' in request.GET.sort_by %}checked{% endif %}> Fouls</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="sort_by" value="points_per_game" 
+                        {% if request.GET.sort_by == 'points_per_game' %}checked{% endif %}> Points
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="assists_per_game" 
+                        {% if request.GET.sort_by == 'assists_per_game' %}checked{% endif %}> Assists
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="rebounds_per_game" 
+                        {% if request.GET.sort_by == 'rebounds_per_game' %}checked{% endif %}> Rebounds
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="three_pointers_per_game" 
+                        {% if request.GET.sort_by == 'three_pointers_per_game' %}checked{% endif %}> 3-Pointers
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="steals_per_game" 
+                        {% if request.GET.sort_by == 'steals_per_game' %}checked{% endif %}> Steals
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="blocks_per_game" 
+                        {% if request.GET.sort_by == 'blocks_per_game' %}checked{% endif %}> Blocks
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="turnovers_per_game" 
+                        {% if request.GET.sort_by == 'turnovers_per_game' %}checked{% endif %}> Turnovers
+                </label>
+                <label>
+                    <input type="radio" name="sort_by" value="fouls_per_game" 
+                        {% if request.GET.sort_by == 'fouls_per_game' %}checked{% endif %}> Fouls
+                </label>
             </div>
         </div>
         

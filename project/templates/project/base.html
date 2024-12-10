@@ -15,10 +15,8 @@
             <div class="links">
                 <a href="{% url 'matchups' %}">Matchups</a>
                 <a href="{% url 'players' %}">Players</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'watchlist' %}">Watchlist</a>
-                    <a href="{% url 'social' %}">Social</a>
-                {% endif %}
+                <a href="{% url 'watchlist' %}">Watchlist</a>
+                <a href="{% url 'social' %}">Social</a>
             </div>
             <div class="authentication">
                 {% if user.is_authenticated %}
