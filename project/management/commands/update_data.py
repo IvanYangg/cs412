@@ -9,12 +9,12 @@ class Command(BaseCommand):
     help = "Fetch daily NBA data and update the database"
 
     def handle(self, *args, **kwargs):
-        # self.clear_data()
+        self.clear_data()
         self.stdout.write("Starting data update...")
-        # self.update_teams()
-        # time.sleep(10)
-        # self.update_matchups()
-        # time.sleep(10)
+        self.update_teams()
+        time.sleep(10)
+        self.update_matchups()
+        time.sleep(10)
         self.update_players()
         self.stdout.write("All Data successfully updated!")
         
