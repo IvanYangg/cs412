@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView, CreateView, DeleteView
+from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from .models import Player, Team, Matchup, PlayerGameLog, UserWatchList, UserProfile
+from .models import Player, Team, Matchup, PlayerGameLog, UserWatchList, UserProfile, Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import CreateProfileForm
+from .forms import CreateProfileForm, PostForm
 from django.db.models import Q
 
 # Create your views here.
@@ -158,3 +158,59 @@ class RemoveFromWatchlistView(LoginRequiredMixin, DeleteView):
     # Handle redirection
     def get_success_url(self):
         return reverse('watchlist')
+    
+# List view for all posts/social page
+class SocialPageView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'project/social.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-timestamp')
+
+# Create view for new posts
+class CreatePostView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'project/create_post.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Associate the post with the logged-in user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('social')
+    
+# Create view for all posts that a logged-in user has made
+class MyPostsListView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'project/my_posts.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(user=self.request.user).order_by('-timestamp')
+
+# View for updating posts that a logged-in user has made
+class UpdatePostView(LoginRequiredMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'project/update_post.html'
+
+    def get_queryset(self):
+        # Ensure only the author can update their own posts
+        return Post.objects.filter(user=self.request.user)
+    
+    def get_success_url(self):
+        return reverse('social')
+
+# View for deleting posts that a logged-in user has made
+class DeletePostView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'project/delete_post.html'
+
+    def get_queryset(self):
+        # Ensure only the author can delete their own posts
+        return Post.objects.filter(user=self.request.user)
+    
+    def get_success_url(self):
+        return reverse('social')

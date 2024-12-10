@@ -13,4 +13,9 @@ urlpatterns = [
     path('watchlist/', views.WatchlistView.as_view(), name='watchlist'),
     path('player/<int:pk>/add_to_watchlist/', views.AddToWatchlistView.as_view(), name='add_to_watchlist'),
     path('player/<int:pk>/remove_from_watchlist/', views.RemoveFromWatchlistView.as_view(), name='remove_from_watchlist'),
+    path('social/', views.SocialPageView.as_view(), name='social'),
+    path('social/my_posts/', views.MyPostsListView.as_view(), name='my_posts'),
+    path('social/create/', views.CreatePostView.as_view(), name='create_post'),
+    path('social/my_posts/update/<int:pk>/', views.UpdatePostView.as_view(), name='update_post'),
+    path('social/my_posts/delete/<int:pk>/', views.DeletePostView.as_view(), name='delete_post'),
 ]

@@ -1,0 +1,28 @@
+{% extends 'project/base.html' %}
+{% block content %}
+
+<div class="social-layout">
+    <div class="social-container">
+        {% for post in posts %}
+            <div class="post">
+                <div class="message">{{ post.message }}</div>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Post Image">
+                {% endif %}
+                <div class="metadata">
+                    {{ post.timestamp|date:"M d, Y H:i" }} by <strong>{{ post.user.username }}</strong>
+                </div>
+            </div>
+        {% empty %}
+            <p>No posts yet. Be the first to share something!</p>
+        {% endfor %}
+    </div>
+    <div class="social-sidebar">
+        <a href="{% url 'create_post' %}" class="create-post-btn">Create New Post</a>
+        <a href="{% url 'my_posts' %}" class="view-posts-btn">View My Posts</a>
+    </div>
+</div>
+
+
+{% endblock %}
+

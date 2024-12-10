@@ -1,0 +1,14 @@
+{% extends 'project/base.html' %}
+{% block content %}
+
+<div class="update-post-container">
+    <h2>Edit Post</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Save</button>
+    </form>
+    <a href="{% url 'social' %}" class="cancel-btn">Cancel</a>
+</div>
+
+{% endblock %}
