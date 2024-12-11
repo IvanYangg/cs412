@@ -1,3 +1,8 @@
+# Name: Ivan Yang
+# BU Email: yangi@bu.edu
+# Description: This file defines all the custom models that are defined in my application. 
+# Potential future updates include adding id, and player_img fields to the Player model, and comments, likes to the Post model to enhance the social experience. 
+
 from django.db import models
 from django.contrib.auth.models import User
 

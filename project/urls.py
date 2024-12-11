@@ -1,3 +1,7 @@
+# Name: Ivan Yang
+# BU Email: yangi@bu.edu
+# Description: This file defines all the urls that exist in my application. 
+
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views

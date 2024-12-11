@@ -1,3 +1,7 @@
+# Name: Ivan Yang
+# BU Email: yangi@bu.edu
+# Description: This file defines the custom forms that are defined in my project application. 
+
 from django import forms
 from .models import UserProfile, Post
 

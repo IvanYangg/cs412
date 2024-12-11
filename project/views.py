@@ -1,3 +1,7 @@
+# Name: Ivan Yang
+# BU Email: yangi@bu.edu
+# Description: This file defines all the custom views that are implemented in my application.
+
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
@@ -19,6 +23,7 @@ class MatchupListView(ListView):
     template_name = "project/matchups.html"
     context_object_name = "matchups"
 
+    # Fetch all matchup records
     def get_queryset(self):
         return Matchup.objects.all()
 
@@ -55,6 +60,7 @@ class PlayerListView(ListView):
 
         return queryset
 
+    # obtain all teams for the filter dropdown
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teams'] = Team.objects.all()
@@ -66,6 +72,7 @@ class PlayerDetailView(DetailView):
     template_name = "project/player_detail.html"
     context_object_name = "player"
 
+    # context for fetching game logs and player averages, as well as checking if the player is in the user's watchlist 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['game_logs'] = PlayerGameLog.objects.filter(player=self.object).order_by('-date')
@@ -107,8 +114,8 @@ class WatchlistView(LoginRequiredMixin, ListView):
     template_name = 'project/watchlist.html' 
     context_object_name = 'watchlist'
 
+    # Fetch all players in the user's watchlist
     def get_queryset(self):
-        # Filter watchlist entries for the logged-in user
         user_profile = self.request.user.userprofile
         return UserWatchList.objects.filter(user=user_profile)
 
@@ -118,6 +125,7 @@ class AddToWatchlistView(LoginRequiredMixin, CreateView):
     fields = []
     template_name = 'project/add_to_watchlist.html'
 
+    # this function is used to pass the player object, if it exists, to the context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['player'] = get_object_or_404(Player, pk=self.kwargs['pk'])
@@ -134,6 +142,7 @@ class AddToWatchlistView(LoginRequiredMixin, CreateView):
             form.instance.player = player
             return super().form_valid(form)
 
+    # Handle redirection
     def get_success_url(self):
         return reverse('watchlist')
 
@@ -164,6 +173,7 @@ class SocialPageView(LoginRequiredMixin, ListView):
     template_name = 'project/social.html'
     context_object_name = 'posts'
 
+    # Fetch all posts and order by timestamp
     def get_queryset(self):
         return Post.objects.all().order_by('-timestamp')
 
@@ -180,12 +190,13 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('social')
     
-# Create view for all posts that a logged-in user has made
+# View for page showing all posts that a logged-in user has made, landing page for making edits and deletions to posts
 class MyPostsListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'project/my_posts.html'
     context_object_name = 'posts'
 
+    # Fetch all posts that the logged-in user has made and order by timestamp
     def get_queryset(self):
         return Post.objects.filter(user=self.request.user).order_by('-timestamp')
 

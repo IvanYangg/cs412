@@ -1,3 +1,15 @@
+# Name: Ivan Yang
+# BU Email: yangi@bu.edu
+# Description: This file defines the custom management command script that fetches NBA data from ESPN API and updates the database. Although not automated yet, this file will eventually be run daily, perhaps around 2am when all games have long finished, to retrieve bulk data from the ESPN API. The data is then parsed and stored in the database. The script is divided into three main functions: update_teams, update_matchups, and update_players. The update_teams function fetches NBA team data and stores it in the Team model. The update_matchups function fetches NBA matchup data and stores it in the Matchup model. The update_players function fetches NBA player data and stores it in the Player and PlayerGameLog models. The script also includes a clear_data function that wipes all data from the database to prevent duplicates. The script uses the requests library to make HTTP requests to the ESPN API and the time library to introduce delays between requests to avoid rate limiting. This script is executed by running the command 'python manage.py update_data' in the terminal.
+
+# Future progress for this script: 
+# 1. Automate the script to run daily at a specific time.
+# 2. More error-logging/checking because there is a lot of data being loaded in. 
+# 3. Right now the script takes about 30 minutes to update all the data. This can be optimized by instead of fetching data for all players, only fetching data for players that have played a game that day, utilizing the matchups data to determine which players have played. This can also be further optimized by not rewriting the entire player gamelog data every time, but only adding the data for the most recent games, or the topmost game of the player log because the ESPN API displays games chronologically e.g. something like this events[0].
+# 4. Masking the API call
+# 5. Fetching player images as well, and perhaps their ids to make the code cleaner. 
+# 6. Moving the list of players to a separate file to make the code cleaner.
+
 import time
 import requests
 from django.core.management.base import BaseCommand

@@ -1,3 +1,7 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the HTML for the player-list page. It shows the list of all players that the application tracks as of now, and offers a filtering/searching form that users can use to narrow/filter their queries for more in-depth searching.  -->
+
 {% extends "project/base.html" %}
 {% block content %}
 
@@ -64,7 +68,7 @@
         </div>
     </form>
 
-    
+    <!-- Create custom card templates that I reuse in watchlist -->
     <div class="player-card-container">
         {% for player in players %}
         <a class="player-card" href="{% url 'player_detail' player.id %}">

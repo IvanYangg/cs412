@@ -1,3 +1,7 @@
+/* Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines all the CSS styling that is applied throughout this application */
+
 body {
     line-height: 1.6;
     font-family: 'Roboto', sans-serif;
@@ -5,6 +9,7 @@ body {
     padding: 0;
 }
 
+/* navigation styling */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,6 +70,7 @@ nav {
     top:6px;
 }
 
+/* btn styles used throughout the application */
 .login-btn, .logout-form button, .register-btn, .cancel-btn, .submit-btn, .edit-post-btn, .view-posts-btn {
     background-color: #555;
     color: #fff;
@@ -81,6 +87,48 @@ nav {
     background-color: #777;
 }
 
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align:center;
+    display:block;
+    margin:auto;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.add-watchlist-btn, .create-post-btn {
+    background-color: #0f6905;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom:1em;
+    text-decoration: none;
+}
+
+.remove-watchlist-btn, .cancel-btn, .delete-post-btn {
+    background-color: #9f0505;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom:1em;
+    text-decoration: none;
+}
+
+/* player-list styling */
 .player-list-view {
     margin-left: 1em;
     margin-top: 1em;
@@ -111,6 +159,7 @@ th {
     font-weight: bold;
 }
 
+/* player filtering/searching form styling */
 .filter-form {
     max-width: 80%;
     margin: 0 auto;
@@ -150,23 +199,7 @@ label {
     font-weight: normal;
 }
 
-.btn-submit {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align:center;
-    display:block;
-    margin:auto;
-}
-
-.btn-submit:hover {
-    background-color: #0056b3;
-}
-
+/* player custom card styling, used in watchlist and players */
 .player-card-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -205,6 +238,7 @@ label {
     margin: 0;
 }
 
+/* matchups styling, card styling for matchups */
 .matchups-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -237,6 +271,7 @@ label {
     text-align:center;
 }
 
+/* matchup-detail styling */
 .stats-table-container {
     margin: 20px auto;
     padding: 10px;
@@ -275,6 +310,7 @@ label {
     font-weight: bold;
 }
 
+/* forms, confirmation page content, pages without much content that need centering/border styles */
 .login-form, .logged-out-page, .create-post-container, .update-post-container {
     text-align: center;
     border: 1px solid #898585;
@@ -328,30 +364,7 @@ label {
     text-align: center;
 }
 
-.add-watchlist-btn, .create-post-btn {
-    background-color: #0f6905;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-bottom:1em;
-    text-decoration: none;
-}
-
-.remove-watchlist-btn, .cancel-btn, .delete-post-btn {
-    background-color: #9f0505;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-bottom:1em;
-    text-decoration: none;
-}
-
+/* social page and all styling related to posting */
 .social-layout {
     display: flex;
     justify-content: space-between; 

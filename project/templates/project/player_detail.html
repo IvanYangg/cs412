@@ -1,3 +1,7 @@
+<!-- Name: Ivan Yang
+BU Email: yangi@bu.edu
+Description: This file defines the HTML for the player-detail page, which users can get to upon clicking any player in the player-list page. This page provides more in-depth information on the player statistics, showing two tables, one for season averages and one for their game logs this season and their statistics correlated with each game. -->
+
 {% extends "project/base.html" %}
 {% block content %}
 
@@ -9,6 +13,7 @@
     <a href="{% url 'add_to_watchlist' pk=player.pk %}" class="add-watchlist-btn">Add to Watchlist</a>
     {% endif %}
 </div>
+<!-- Table displaying the player's current season averages -->
 <h2 class="player-detail-header">Season Averages:</h2>
 <table>
     <thead>
@@ -38,6 +43,8 @@
         </tr>
     </tbody>
 </table>
+
+<!-- Table displaying the player's game logs for the season-->
 <h2 class="player-detail-header">Recent Games:</h2>
 <table>
     <thead>
